@@ -10,9 +10,11 @@ CUSTOM = -custom
 
 all: depend $(EXEC)
 
+MLIS = $(wildcard *.mli)
+CMIS = $(MLIS:.mli=.cmi)
 OBJS = $(SOURCES:.ml=.cmo)
 
-$(EXEC): $(OBJS)
+$(EXEC): $(CMIS) $(OBJS)
 	$(CAMLC) $(CUSTOM) -o $(EXEC) $(LIBS) $(OBJS)
 
 .SUFFIXES: .ml .mli .cmo .cmi
